@@ -3842,6 +3842,26 @@ p, li { white-space: pre-wrap; }
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="btn_clear">
+            <property name="maximumSize">
+             <size>
+              <width>150</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>CLEAR</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
@@ -3857,7 +3877,7 @@ p, li { white-space: pre-wrap; }
        </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">background-color: rgb(5, 134, 255);
+       <string notr="true">background-color: rgb(158, 234, 255);
 
 </string>
       </property>
@@ -4741,9 +4761,7 @@ background-color: rgb(255, 255, 255);</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">
-
-</string>
+             <string notr="true"/>
             </property>
             <property name="title">
              <string/>

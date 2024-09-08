@@ -1,7 +1,12 @@
 
 //----Arduino to App-------------//
-START#req  = Start the App
+START#req  = To Start the App CMD will receive to App only 1st time.
+START#ack = acknowledge CMD from APP to sender for Start
 STOP#req   = Stop the App
-COMPANY#name = Display company name.
-MotorSerial#1234567  = Motor serial number
-For Motor data = "NM1#v1@0&v2@1&v3@2&c1@3&c2@4&vc3@5&v1@6&v2@7&v3@8&c1@9&c2@10&vc3@11&v1@12&v2@13&v3@14&c1@15&c2@16&vc3@17&c1@18&c2@19&vc3@Pass\n";
+STOP#ack    = acknowledge CMD from APP to sender for Stop
+COMPANY#name = Display company name App CMD will receive to App
+MotorSerial#1234567  = Motor serial number App CMD will receive to App
+
+For Motor data = "NM#v1@0&v2@1&v3@2&c1@3&c2@4&vc3@5&v1@6&v2@7&v3
+                   @8&c1@9&c2@10&vc3@11&v1@12&v2@13&v3@14&c1@15&c2@16&vc3@17&c1
+                   @18&c2@19&vc3@Pass\n";   =  Motor data App CMD will receive to App

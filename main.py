@@ -19,6 +19,12 @@ def set_name(value, lineedit):
     lineedit.setText(tem[0])
 
 
+def load_value(value, lineedit):
+    # print(value)
+    tem = value.split('=')
+    lineedit.setText(tem[1])
+
+
 class Ui(QMainWindow):
 
     def __init__(self, *args, **kwargs):
@@ -29,8 +35,8 @@ class Ui(QMainWindow):
         self.serial_port = None
         self.pre_config_data = None
         self.Motor_data = None
-        self.Motor_number = None
-        self.run = None
+        self.Motor_number = 0
+        self.run = False
         # ------------Timer------------------------------
         self.timer = QTimer(self)
 
@@ -54,6 +60,7 @@ class Ui(QMainWindow):
         self.btn_load.clicked.connect(self.load_data)
         self.btn_save.clicked.connect(self.save_function)
         self.btn_print.clicked.connect(self.print_function)
+        self.btn_clear.clicked.connect(self.clean_data)
         # -------Line Edit List-------------------------------------
         self.m1_lineEdits = [self.m1_motor_lvs, self.m1_normal_voltage, self.m1motorhighvoltage, self.m1lvscurrent,
                              self.m1normalcurrent, self.m1highestcurrent, self.m1maxcurrent, self.m1lvswattage,
@@ -169,7 +176,7 @@ class Ui(QMainWindow):
     def send_group_parameter(self):
         try:
             if self.serial_port:
-                data = (f"$LCLS@{self.lowcurrentlowspeed.text()}"
+                data = (f"$LCLS lcls@{self.lowcurrentlowspeed.text()}"
                         f"&HCLS@{self.highcurrentlowspeed.text()}"
                         f"&LCMS@{self.lowcurrentmedspeed.text()}"
                         f"&HCMS@{self.highcurrentmedspeed.text()}"
@@ -187,54 +194,45 @@ class Ui(QMainWindow):
                         f"&HWHR@{self.highwattagelockrotor.text()}\n"
                         )
                 self.send_data_on_serial(data)
-
-                # self.send_parameter('LCLS', self.lowcurrentlowspeed.text())
-                # self.send_parameter('HCLS', self.highcurrentlowspeed.text())
-                # self.send_parameter('LCMS', self.lowcurrentmedspeed.text())
-                # self.send_parameter('HCMS', self.highcurrentmedspeed.text())
-                # self.send_parameter('LCHS', self.lowcurrenthighspeed.text())
-                # self.send_parameter('HCHS', self.highcurrenthighspeed.text())
-                # self.send_parameter('LCLR', self.lowcurrentlockrotor.text())
-                # self.send_parameter('HCLR', self.highcurrentlockrotor.text())
-                # 
-                # self.send_parameter('LWLS', self.lowwattagelowspeed.text())
-                # self.send_parameter('HWLS', self.highwattagelowspeed.text())
-                # self.send_parameter('LWMS', self.lowwattagemedspeed.text())
-                # self.send_parameter('HWMS', self.highwattagemedspeed.text())
-                # self.send_parameter('LWHS', self.lowwattagehighspeed.text())
-                # self.send_parameter('HWHS', self.highwattagehighspeed.text())
-                # self.send_parameter('LWLR', self.lowwattagelockrotor.text())
-                # self.send_parameter('HWHR', self.highwattagelockrotor.text())
-                # 
-                # self.send_parameter('ACL', self.ac_leakage.text())
-                # self.send_parameter('INS', self.insulation.text())
-
             else:
                 QMessageBox.critical(self, "Error", "Connect COM")
         except Exception as errors:
             QMessageBox.critical(self, "Critical", f"\n{errors}")
 
     def start_reading(self):
-        self.serial_port.reset_input_buffer()
-        self.connect_button.setEnabled(False)
-        self.show_time()
-        self.timer.start(100)
-        self.read_button.setText("STOP")
-        # self.test_status.setText("PENDING")
-        self.run = True
-        return True
+        try:
+            if not self.run:
+                self.serial_port.reset_input_buffer()
+                self.connect_button.setEnabled(False)
+                self.show_time()
+                self.timer.start(100)
+                self.read_button.setText("STOP")
+                # self.test_status.setText("PENDING")
+                self.run = True
+                return True
+            else:
+                return False
+        except Exception as e:
+            QMessageBox.critical(self, "Critical", f"Fail to start\n{e}")
+            return False
 
     def stop_reading(self):
-        self.timer.stop()
-        self.connect_button.setEnabled(True)
-        self.read_button.setText("START")
-        # self.test_status.setText("STATUS")
-        self.run = False
-        return True
+        try:
+            if self.run:
+                self.timer.stop()
+                self.connect_button.setEnabled(True)
+                self.read_button.setText("START")
+                self.run = False
+                return True
+            else:
+                return False
+        except Exception as e:
+            QMessageBox.critical(self, "Critical", f"Fail to stop\n{e}")
+            return False
 
     def start_stop_program(self):
         if self.serial_port:
-            if self.run == True:
+            if self.run:
                 self.stop_reading()
             else:
                 self.start_reading()
@@ -311,31 +309,29 @@ class Ui(QMainWindow):
         # -------------------Motor 1 Detail----------------------
 
         html_content = f"<h2>{self.title_name_3.text()}</h2>"
-        html_content += f"<p>Material Reference : = {self.material_lineEdit.text()}</p>"
-        html_content += f"<p>Customer Name : = {self.customer_lineEdit.text()}</p>"
-        html_content += f"<p>Date := {self.date_lebel.text()} Time : {self.time_lebel.text()} </p>"
+        html_content += f"<p>Material_Reference={self.material_lineEdit.text()}</p>"
+        html_content += f"<p>Customer_Name={self.customer_lineEdit.text()}</p>"
+        html_content += f"<p>Date={self.date_lebel.text()} Time={self.time_lebel.text()} </p>"
         html_content += f"<h1>Motor1</h1>"
-        html_content += f"Motor 1 Serial Number:={self.m1serial_no.text()}"
+        html_content += f"Motor_1_Serial_Number={self.m1serial_no.text()}"
         for label, line_edit in zip(self.m1_labels, self.m1_lineEdits):
             text = line_edit.text()
             lbl = label.text()
-            html_content += f"<p>{lbl} = {text}</p>"
-        html_content += f"<h1>Motor*2</h1>"
-        html_content += f"Motor 2 Serial Number:={self.m2serial_no.text()}"
+            html_content += f"<p>{lbl}={text}</p>"
+        html_content += f"<h1>Motor2</h1>"
+        html_content += f"Motor_2_Serial_Number:={self.m2serial_no.text()}"
         for label, line_edit in zip(self.m2_labels, self.m2_lineEdits):
             text = line_edit.text()
             lbl = label.text()
             html_content += f"<p>{lbl}={text}</p>"
-        html_content += f"<p><br></p>"
-        html_content += f"<h1>Motor*3</h1>"
-        html_content += f"Motor 3 Serial Number:={self.m3serial_no.text()}"
+        html_content += f"<h1>Motor3</h1>"
+        html_content += f"Motor_3_Serial_Number:={self.m3serial_no.text()}"
         for label, line_edit in zip(self.m3_labels, self.m3_lineEdits):
             text = line_edit.text()
             lbl = label.text()
             html_content += f"<p>{lbl}={text}</p>"
-        html_content += f"<p><br></p>"
-        html_content += f"<h1>Motor*4</h1>"
-        html_content += f"Motor 4 Serial Number:={self.m4serial_no.text()}"
+        html_content += f"<h1>Motor4</h1>"
+        html_content += f"Motor_4_Serial_Number:={self.m4serial_no.text()}"
         for label, line_edit in zip(self.m4_labels, self.m4_lineEdits):
             text = line_edit.text()
             lbl = label.text()
@@ -368,16 +364,57 @@ class Ui(QMainWindow):
             QMessageBox.critical(self, "Error", "Enter motor serial number")
 
     def load_content(self, text):
-        # Create a QTextDocument to format the content
-        print(text)
+        temp = text.readline().strip()
+        self.title_name_3.setText(temp)
+        # #----------------------------------------------
+        temp = text.readline().strip()
+        # self.material_lineEdit.setText("dfcvgbh")
+        load_value(temp, self.material_lineEdit)
+        temp = text.readline().strip()
+        load_value(temp, self.customer_lineEdit)
+        temp = text.readline().strip().split(' ')
+        load_value(temp[0], self.date_lebel)
+        load_value(temp[1], self.time_lebel)
+        temp = text.readline().strip()
+
+        if temp == "Motor1":
+            temp = text.readline().strip()
+            load_value(temp, self.m1serial_no)
+
+            for line_edit in self.m1_lineEdits:
+                temp = text.readline().strip()
+                load_value(temp, line_edit)
+
+        temp = text.readline().strip()
+        if temp == "Motor2":
+            temp = text.readline().strip()
+            load_value(temp, self.m2serial_no)
+            for line_edit in self.m2_lineEdits:
+                temp = text.readline().strip()
+                load_value(temp, line_edit)
+
+        temp = text.readline().strip()
+        if temp == "Motor3":
+            temp = text.readline().strip()
+            load_value(temp, self.m3serial_no)
+            for line_edit in self.m3_lineEdits:
+                temp = text.readline().strip()
+                load_value(temp, line_edit)
+
+        temp = text.readline().strip()
+        if temp == "Motor4":
+            temp = text.readline().strip()
+            load_value(temp, self.m4serial_no)
+            for line_edit in self.m4_lineEdits:
+                temp = text.readline().strip()
+                load_value(temp, line_edit)
 
     def load_data(self):
         file_path, _ = QFileDialog.getOpenFileName(self, 'Open File', '', 'Text Files (*.txt);;All Files (*)')
         if file_path:
             try:
                 with open(file_path, 'r') as file:
-                    text = file.read()
-                    self.load_content(text)
+                    self.load_content(file)
             except Exception as errors:
                 QMessageBox.Critical(self, "Error", f"Error Found \n{errors}")
 
@@ -415,6 +452,9 @@ class Ui(QMainWindow):
         #     set_name(values[count], lbl_edit)
         #     count += 1
 
+    def m1_clear_line_edit(self):
+        pass
+
     def m2_set_line_edit(self, values):
         count = 0
         for line_edit in self.m2_lineEdits:
@@ -433,21 +473,60 @@ class Ui(QMainWindow):
             set_value(values[count], line_edit)
             count += 1
 
+    def fill_motor_data(self, data):
+        if self.Motor_number == 0:
+            values = data.split('&')
+            self.m1_set_line_edit(values)
+            self.Motor_number = 1
+        elif self.Motor_number == 1:
+            values = data.split('&')
+            self.m2_set_line_edit(values)
+            self.Motor_number = 2
+        elif self.Motor_number == 2:
+            values = data.split('&')
+            self.m3_set_line_edit(values)
+            self.Motor_number = 3
+        elif self.Motor_number == 3:
+            values = data.split('&')
+            self.m4_set_line_edit(values)
+            self.Motor_number = 0
+        else:
+            pass
+
+    def fill_motor_serial_number(self, data):
+        if self.Motor_number == 0:
+            self.m1serial_no.setText(data)
+        if self.Motor_number == 1:
+            self.m2serial_no.setText(data)
+        if self.Motor_number == 2:
+            self.m3serial_no.setText(data)
+        if self.Motor_number == 3:
+            self.m4serial_no.setText(data)
+
+    def clean_data(self):
+        self.m1serial_no.setText(" ")
+        self.m2serial_no.setText(" ")
+        self.m3serial_no.setText(" ")
+        self.m4serial_no.setText(" ")
+        for line_edit in self.m1_lineEdits:
+            line_edit.setText(" ")
+        for line_edit in self.m2_lineEdits:
+            line_edit.setText(" ")
+        for line_edit in self.m3_lineEdits:
+            line_edit.setText(" ")
+        for line_edit in self.m4_lineEdits:
+            line_edit.setText(" ")
+
     def process_serial_data(self, data):
         # Assume data is a comma-separated string like "value1,value2,value3"
         values = data.split('#')
-        if values[0] == "NM1":
-            values = values[1].split('&')
-            self.m1_set_line_edit(values)
-        if values[0] == "NM2":
-            values = values[1].split('&')
-            self.m2_set_line_edit(values)
-        if values[0] == "NM3":
-            values = values[1].split('&')
-            self.m3_set_line_edit(values)
-        if values[0] == "NM4":
-            values = values[1].split('&')
-            self.m4_set_line_edit(values)
+        if values[0] == "NM":
+            self.fill_motor_data(values[1])
+
+        # MotorSerial#1234567
+        if values[0] == "MotorSerial":
+            self.fill_motor_serial_number(values[1])
+
         if values[0] == "START":
             if values[1] == "req":
                 if self.start_reading():  # CMD = "START#req"
