@@ -1,0 +1,451 @@
+{
+    "header": {
+        "title": "REPORT MOTOR PARAMETER MEASUREMENT",
+        "fields": [
+            {
+                "label": "Model Reference",
+                "data": 56
+            },
+            {
+                "label": "Customer Name",
+                "data": "Interface"
+            },
+            {
+                "label": "Date",
+                "data": "23-52-2023"
+            },
+            {
+                "label": "Time",
+                "data": "12:20:23"
+            }
+        ]
+    },
+    "motors": [
+        {
+            "motor_id": 1,
+            "Motor_1_Serial_Number": 113456763,
+            "fields": [
+                {
+                    "label": "Motor LVS",
+                    "data": 0
+                },
+                {
+                    "label": "Moto Normal Voltage",
+                    "data": 1
+                },
+                {
+                    "label": "Motor High Voltage",
+                    "data": 2
+                },
+                {
+                    "label": "LVS Current",
+                    "data": 3
+                },
+                {
+                    "label": "Normal Current",
+                    "data": 4
+                },
+                {
+                    "label": "Highest Current",
+                    "data": 5
+                },
+                {
+                    "label": "Max Current",
+                    "data": 6
+                },
+                {
+                    "label": "LVS Wattage",
+                    "data": 7
+                },
+                {
+                    "label": "Normal Wattage",
+                    "data": 8
+                },
+                {
+                    "label": "Max Wattage",
+                    "data": 9
+                },
+                {
+                    "label": "I. R. Value",
+                    "data": 10
+                },
+                {
+                    "label": "LVS KVA",
+                    "data": 11
+                },
+                {
+                    "label": "Normal KVA",
+                    "data": 12
+                },
+                {
+                    "label": "Maximum KVA",
+                    "data": 13
+                },
+                {
+                    "label": "Power factor",
+                    "data": 14
+                },
+                {
+                    "label": "Line Factor",
+                    "data": 15
+                },
+                {
+                    "label": "Line Frequency",
+                    "data": 16
+                },
+                {
+                    "label": "I. B. Value",
+                    "data": 17
+                },
+                {
+                    "label": "H. V. Current",
+                    "data": 18
+                },
+                {
+                    "label": "H.V. Test",
+                    "data": 19
+                },
+                {
+                    "label": "STATUS",
+                    "data": "Pass"
+                }
+            ],
+            "Motor_0_Serial_Number": "1234567"
+        },
+        {
+            "motor_id": 2,
+            "Motor_2_Serial_Number": 123456763,
+            "fields": [
+                {
+                    "label": "Motor LVS",
+                    "data": 0
+                },
+                {
+                    "label": "Moto Normal Voltage",
+                    "data": 1
+                },
+                {
+                    "label": "Motor High Voltage",
+                    "data": 2
+                },
+                {
+                    "label": "LVS Current",
+                    "data": 3
+                },
+                {
+                    "label": "Normal Current",
+                    "data": 4
+                },
+                {
+                    "label": "Highest Current",
+                    "data": 5
+                },
+                {
+                    "label": "Max Current",
+                    "data": 6
+                },
+                {
+                    "label": "LVS Wattage",
+                    "data": 7
+                },
+                {
+                    "label": "Normal Wattage",
+                    "data": 8
+                },
+                {
+                    "label": "Max Wattage",
+                    "data": 9
+                },
+                {
+                    "label": "I. R. Value",
+                    "data": 10
+                },
+                {
+                    "label": "LVS KVA",
+                    "data": 11
+                },
+                {
+                    "label": "Normal KVA",
+                    "data": 12
+                },
+                {
+                    "label": "Maximum KVA",
+                    "data": 13
+                },
+                {
+                    "label": "Power factor",
+                    "data": 14
+                },
+                {
+                    "label": "Line Factor",
+                    "data": 15
+                },
+                {
+                    "label": "Line Frequency",
+                    "data": 16
+                },
+                {
+                    "label": "I. B. Value",
+                    "data": 17
+                },
+                {
+                    "label": "H. V. Current",
+                    "data": 18
+                },
+                {
+                    "label": "H.V. Test",
+                    "data": 19
+                },
+                {
+                    "label": "STATUS",
+                    "data": "Pass"
+                }
+            ],
+            "Motor_1_Serial_Number": "1234567"
+        },
+        {
+            "motor_id": 3,
+            "Motor_3_Serial_Number": 113456763,
+            "fields": [
+                {
+                    "label": "Motor LVS",
+                    "data": 0
+                },
+                {
+                    "label": "Moto Normal Voltage",
+                    "data": 1
+                },
+                {
+                    "label": "Motor High Voltage",
+                    "data": 2
+                },
+                {
+                    "label": "LVS Current",
+                    "data": 3
+                },
+                {
+                    "label": "Normal Current",
+                    "data": 4
+                },
+                {
+                    "label": "Highest Current",
+                    "data": 5
+                },
+                {
+                    "label": "Max Current",
+                    "data": 6
+                },
+                {
+                    "label": "LVS Wattage",
+                    "data": 7
+                },
+                {
+                    "label": "Normal Wattage",
+                    "data": 8
+                },
+                {
+                    "label": "Max Wattage",
+                    "data": 9
+                },
+                {
+                    "label": "I. R. Value",
+                    "data": 10
+                },
+                {
+                    "label": "LVS KVA",
+                    "data": 11
+                },
+                {
+                    "label": "Normal KVA",
+                    "data": 12
+                },
+                {
+                    "label": "Maximum KVA",
+                    "data": 13
+                },
+                {
+                    "label": "Power factor",
+                    "data": 14
+                },
+                {
+                    "label": "Line Factor",
+                    "data": 15
+                },
+                {
+                    "label": "Line Frequency",
+                    "data": 16
+                },
+                {
+                    "label": "I. B. Value",
+                    "data": 17
+                },
+                {
+                    "label": "H. V. Current",
+                    "data": 18
+                },
+                {
+                    "label": "H.V. Test",
+                    "data": 19
+                },
+                {
+                    "label": "STATUS",
+                    "data": "Pass"
+                }
+            ],
+            "Motor_2_Serial_Number": "1234567"
+        },
+        {
+            "motor_id": 4,
+            "Motor_4_Serial_Number": 123456763,
+            "fields": [
+                {
+                    "label": "Motor LVS",
+                    "data": 0
+                },
+                {
+                    "label": "Moto Normal Voltage",
+                    "data": 1
+                },
+                {
+                    "label": "Motor High Voltage",
+                    "data": 2
+                },
+                {
+                    "label": "LVS Current",
+                    "data": 3
+                },
+                {
+                    "label": "Normal Current",
+                    "data": 4
+                },
+                {
+                    "label": "Highest Current",
+                    "data": 5
+                },
+                {
+                    "label": "Max Current",
+                    "data": 6
+                },
+                {
+                    "label": "LVS Wattage",
+                    "data": 7
+                },
+                {
+                    "label": "Normal Wattage",
+                    "data": 8
+                },
+                {
+                    "label": "Max Wattage",
+                    "data": 9
+                },
+                {
+                    "label": "I. R. Value",
+                    "data": 10
+                },
+                {
+                    "label": "LVS KVA",
+                    "data": 11
+                },
+                {
+                    "label": "Normal KVA",
+                    "data": 12
+                },
+                {
+                    "label": "Maximum KVA",
+                    "data": 13
+                },
+                {
+                    "label": "Power factor",
+                    "data": 14
+                },
+                {
+                    "label": "Line Factor",
+                    "data": 15
+                },
+                {
+                    "label": "Line Frequency",
+                    "data": 16
+                },
+                {
+                    "label": "I. B. Value",
+                    "data": 17
+                },
+                {
+                    "label": "H. V. Current",
+                    "data": 18
+                },
+                {
+                    "label": "H.V. Test",
+                    "data": 19
+                },
+                {
+                    "label": "STATUS",
+                    "data": "Pass"
+                }
+            ],
+            "Motor_3_Serial_Number": "1234567"
+        }
+    ],
+    "additional_measurements": {
+        "Voltage Test": [
+            {
+                "label": "Low",
+                "data": 0
+            },
+            {
+                "label": "High",
+                "data": 0
+            }
+        ],
+        "A.C. H.V. Leakage": {
+            "Low Speed": [
+                {
+                    "label": "L1",
+                    "data": 0
+                },
+                {
+                    "label": "L2",
+                    "data": 0
+                },
+                {
+                    "label": "L3",
+                    "data": 0
+                }
+            ],
+            "High Speed": [
+                {
+                    "label": "L1",
+                    "data": 0
+                },
+                {
+                    "label": "L2",
+                    "data": 0
+                },
+                {
+                    "label": "L3",
+                    "data": 0
+                }
+            ]
+        },
+        "Lock Rotor": [
+            {
+                "label": "L1",
+                "data": 0
+            },
+            {
+                "label": "L2",
+                "data": 0
+            },
+            {
+                "label": "L3",
+                "data": 0
+            }
+        ],
+        "Revolution Resistance": [
+            {
+                "label": "Set",
+                "data": 0
+            }
+        ]
+    }
+}
